@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHL Express Tracking</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #fff; margin: 0; padding: 0; }
+        header { background: #ffcc00; padding: 20px; text-align: center; }
+        header img { max-height: 50px; }
+        .container { padding: 20px; max-width: 800px; margin: auto; }
+        .tracking-info { border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        .progress-bar { background: #ddd; border-radius: 20px; overflow: hidden; height: 20px; margin: 20px 0; }
+        .progress { background: #ffcc00; height: 100%; width: 70%; transition: width 1s; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 10px; text-align: left; }
+        th { background: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="dhl_logo.png" alt="DHL Express Logo">
+    </header>
+    <div class="container">
+        <h2>Tracking Number: <strong>DEMO123456789</strong></h2>
+        <p>Date/Time: <span id="datetime"></span></p>
+        <div class="tracking-info">
+            <h3>Shipment Progress</h3>
+            <p>From Brussels, Belgium → To Beijing, China</p>
+            <div class="progress-bar"><div class="progress"></div></div>
+            <h3>Delivery History</h3>
+            <table>
+                <tr><th>Date</th><th>Location</th><th>Status</th></tr>
+                <tr><td>2025-08-01</td><td>Brussels, Belgium</td><td>Shipment picked up</td></tr>
+                <tr><td>2025-08-02</td><td>Brussels, Belgium</td><td>Departed Facility</td></tr>
+                <tr><td>2025-08-04</td><td>Shanghai, China</td><td>Arrived at Facility</td></tr>
+                <tr><td>2025-08-05</td><td>Beijing, China</td><td>With delivery courier</td></tr>
+                <tr><td>2025-08-05</td><td>Beijing, China</td><td>Delivered</td></tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.getElementById('datetime').innerText = new Date().toLocaleString();
+    </script>
+</body>
+</html>
