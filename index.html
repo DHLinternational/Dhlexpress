@@ -1,46 +1,62 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>快递追踪</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #fff; margin: 0; padding: 0; text-align: center; }
-        header { background-color: #ffcc00; padding: 15px; font-size: 24px; font-weight: bold; color: red; }
-        input[type=text] { padding: 10px; width: 250px; }
-        button { padding: 10px; background-color: red; color: white; border: none; cursor: pointer; }
-        table { width: 90%; margin: 20px auto; border-collapse: collapse; }
-        th, td { border: 1px solid #ccc; padding: 10px; }
-        th { background-color: #f2f2f2; }
-        .progress { margin-top: 20px; }
-    </style>
+    <title>DHL Shipment Tracking</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>快递追踪系统</header>
-    <p>请输入运单号：</p>
-    <input type="text" id="trackingNumber" placeholder="例如：CN123456789">
-    <button onclick="trackPackage()">查询</button>
+    <header>
+        <img src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg" alt="DHL Logo" class="logo">
+        <h1>Track Your Shipment</h1>
+    </header>
 
-    <div class="progress" id="progressSection" style="display:none;">
-        <h2>运输进度：比利时 → 中国</h2>
-        <table>
-            <tr><th>日期</th><th>地点</th><th>状态</th></tr>
-            <tr><td>2025-08-10</td><td>比利时 布鲁塞尔</td><td>已揽收</td></tr>
-            <tr><td>2025-08-11</td><td>比利时 布鲁塞尔</td><td>处理中心处理中</td></tr>
-            <tr><td>2025-08-12</td><td>德国 莱比锡</td><td>离开分拨中心</td></tr>
-            <tr><td>2025-08-13</td><td>中国 上海</td><td>到达目的地处理中心</td></tr>
-        </table>
-    </div>
+    <main>
+        <section class="tracking-form">
+            <input type="text" id="trackingNumber" placeholder="Enter your tracking number">
+            <button onclick="trackPackage()">Track</button>
+        </section>
 
-    <script>
-        function trackPackage() {
-            let code = document.getElementById('trackingNumber').value.trim();
-            if(code) {
-                document.getElementById('progressSection').style.display = 'block';
-            } else {
-                alert('请输入有效的运单号');
-            }
-        }
-    </script>
+        <section id="trackingResult" class="hidden">
+            <h2>Status: <span id="statusText"></span></h2>
+
+            <div class="progress-container">
+                <div class="stage" id="stage1">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/parcel.png">
+                    <p>Picked up</p>
+                </div>
+                <div class="stage" id="stage2">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/in-transit.png">
+                    <p>In Transit</p>
+                </div>
+                <div class="stage" id="stage3">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/customs-officer.png">
+                    <p>Customs</p>
+                </div>
+                <div class="stage" id="stage4">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/delivery.png">
+                    <p>Delivery</p>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody id="trackingTable">
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
